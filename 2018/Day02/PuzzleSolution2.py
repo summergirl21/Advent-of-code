@@ -1,4 +1,5 @@
 
+
 def main():
     print("Hello")
     rep2count = 0
@@ -21,8 +22,8 @@ def main():
             if has3repeat:
                 rep3count += 1
         print(f"Totals, 2 repeats: {rep2count}, 3 repeats {rep3count}")
-        part2res = rep2count * rep3count
-        print(f"Result: {part2res}")
+        part1res = rep2count * rep3count
+        print(f"Result: {part1res}")
 
         print("")
         file.seek(0)
@@ -35,8 +36,8 @@ def main():
                 print()
                 (found_pair, first_diff) = compare_ids(first_id, second_id)
                 if found_pair:
-                    result = first_id[:first_diff] + first_id[first_diff+1:]
-                    print(f"Result {result}")
+                    part2res = first_id[:first_diff] + first_id[first_diff+1:]
+                    print(f"Result {part2res}")
                     return
 
 
@@ -47,6 +48,7 @@ def count_letters(line):
         result[c] += 1
     # print(result)
     return result
+
 
 def compare_ids(first_id, second_id):
     print(f"comparing {first_id} and {second_id}")

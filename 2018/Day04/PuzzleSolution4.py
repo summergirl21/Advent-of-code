@@ -7,8 +7,6 @@ Process the input one shift at a time, updated the data for that guard
 After all the input is processed, go through and find the guard with the most sleep
 and the minute that guard was asleep the most.
 Start by sorting the input to make processing easier.
-
-Part 2 Solution
 """
 from dataclasses import dataclass
 
@@ -37,7 +35,7 @@ def solve_part1(file):
     lines.sort()
     # print(lines)
 
-    guard_info = dict()
+    guard_info: dict[int, Guard] = dict()
     last_sleep = -1
     guard = None
     for line in lines:
@@ -87,7 +85,7 @@ def solve_part1(file):
     max_min = -1
     guard_id = -1
     for guard in guard_info.values():
-        for i in range (0, 59):
+        for i in range(0, 59):
             if guard.sleep_counts[i] > max_val:
                 max_val = guard.sleep_counts[i]
                 max_min = i

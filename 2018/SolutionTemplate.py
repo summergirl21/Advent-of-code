@@ -2,6 +2,8 @@
 """
 Part 1 Solution
 """
+
+
 def main():
     print("Hello")
     process_file("ExampleInput1.txt")

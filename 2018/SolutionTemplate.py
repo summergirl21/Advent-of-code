@@ -24,8 +24,8 @@ def process_file(file_name):
         print("Part 1")
         solve_part1(lines)
 
-        print("\nPart 2")
-        solve_part2(lines)
+        # print("\nPart 2")
+        # solve_part2(lines)
 
 
 def solve_part1(lines):

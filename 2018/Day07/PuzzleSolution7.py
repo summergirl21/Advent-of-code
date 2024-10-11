@@ -137,13 +137,37 @@ def solve_part2(lines, time_offset, num_workers):
     log(f"Tasks: {tasks}")
 
     workers = [""] * num_workers
-    cur_time = -1
+    cur_time = 0
     while len(tasks.keys()) > 0:
         event = False
         # log(f"Workers {workers} at time {cur_time}")
         # log_task_info(workers, tasks)
         avail_tasks = sorted(find_avail_tasks(tasks, workers))
         # log(f"Available tasks: {avail_tasks}")
+
+        # Assign tasks to workers if there are available tasks and free workers
+        for i in range(len(workers)):
+            cur_task_id = workers[i]
+
+            # avail_tasks = sorted(find_avail_tasks(tasks, workers))
+            # log(f"Available tasks: {avail_tasks}")
+            if not cur_task_id and len(avail_tasks) > 0:
+                event = True
+                # log(f"Worker is not busy")
+                cur_task_id = avail_tasks[0]
+                workers[i] = cur_task_id
+                avail_tasks = avail_tasks[1:]
+                task = tasks[cur_task_id]
+                task.Time -= 1
+                # log(f"Workers {workers} added a task")
+
+        if event:
+            # log(f"Workers {workers} at time {cur_time}")
+            log_task_info(workers, tasks, cur_time)
+            # avail_tasks = sorted(find_avail_tasks(tasks, workers))
+            # log(f"Available tasks: {avail_tasks}")
+
+        # update task states for in progress tasks
         for i in range(len(workers)):
             cur_task_id = workers[i]
             if cur_task_id:
@@ -166,24 +190,7 @@ def solve_part2(lines, time_offset, num_workers):
                     avail_tasks = sorted(find_avail_tasks(tasks, workers))
                     # log(f"Available tasks: {avail_tasks}")
 
-            # avail_tasks = sorted(find_avail_tasks(tasks, workers))
-            # log(f"Available tasks: {avail_tasks}")
-            if not cur_task_id and len(avail_tasks) > 0:
-                event = True
-                # log(f"Worker is not busy")
-                cur_task_id = avail_tasks[0]
-                workers[i] = cur_task_id
-                avail_tasks = avail_tasks[1:]
-                task = tasks[cur_task_id]
-                task.Time -= 1
-                # log(f"Workers {workers} added a task")
-
         cur_time += 1
-        if (event):
-            # log(f"Workers {workers} at time {cur_time}")
-            log_task_info(workers, tasks, cur_time)
-            # avail_tasks = sorted(find_avail_tasks(tasks, workers))
-            # log(f"Available tasks: {avail_tasks}")
 
     # log(f"Workers {workers} at time {cur_time}")
     print(f"FINAL TIME: {cur_time}")

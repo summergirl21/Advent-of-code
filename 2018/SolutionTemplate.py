@@ -30,12 +30,12 @@ def process_file(file_name):
 
 def solve_part1(lines):
     for line in lines:
-        print(line)
+        log(line)
 
 
 def solve_part2(lines):
     for line in lines:
-        print(line)
+        log(line)
 
 
 if __name__ == '__main__':

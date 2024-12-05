@@ -5,6 +5,8 @@ Part 1 Solution
 import time
 
 DEBUG = True
+PROCESS_FULL_INPUT = True
+SOLVE_PART_2 = False
 
 
 def log(s):
@@ -15,8 +17,10 @@ def log(s):
 def main():
     print("Hello")
     process_file("ExampleInput1.txt")
-    # print()
-    # process_file("PuzzleInput1.txt")
+
+    if PROCESS_FULL_INPUT:
+        print()
+        process_file("PuzzleInput1.txt")
 
 
 def process_file(file_name):
@@ -29,12 +33,13 @@ def process_file(file_name):
         print(f"Part 1 result: {result1}")
         print(f"Elapsed time {end - start}")
 
-        # print("\nPart 2")
-        # start = time.time()
-        # result2 = solve_part2(lines)
-        # end = time.time()
-        # print(f"Part 2 result: {result2}")
-        # print(f"Elapsed time {end - start}")
+        if SOLVE_PART_2:
+            print("\nPart 2")
+            start = time.time()
+            result2 = solve_part2(lines)
+            end = time.time()
+            print(f"Part 2 result: {result2}")
+            print(f"Elapsed time {end - start}")
 
 
 def solve_part1(lines):

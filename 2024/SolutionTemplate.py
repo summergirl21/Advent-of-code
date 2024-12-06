@@ -5,7 +5,7 @@ Part 1 Solution
 import time
 
 DEBUG = True
-PROCESS_FULL_INPUT = True
+PROCESS_FULL_INPUT = False
 SOLVE_PART_2 = False
 
 

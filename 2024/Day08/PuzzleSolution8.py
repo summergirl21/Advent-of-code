@@ -9,7 +9,7 @@ Then can loop through the options to process each pair.
 """
 import time
 
-DEBUG = True
+DEBUG = False
 PROCESS_FULL_INPUT = True
 SOLVE_PART_2 = True
 
@@ -68,13 +68,8 @@ def find_antinodes(antenna1, antenna2, len_row, len_col):
 
     return nodes
 
-
-def solve_part1(lines):
-    # process the input to create dictionary of the frequency, to list of coordinates contain the antenna
-    # also need to know the size of the grid.
-    # another option would be to read the input into matrix
+def get_antenna(lines):
     antenna: dict[int, list[tuple[int, int]]] = dict()
-
     row = 0
     col = 0
     for line in lines:
@@ -86,9 +81,17 @@ def solve_part1(lines):
                 antenna[c] = coordinates
             col += 1
         row += 1
-    log(antenna)
     len_row = row
     len_col = col
+    return antenna, len_col, len_row
+
+
+def solve_part1(lines):
+    # process the input to create dictionary of the frequency, to list of coordinates contain the antenna
+    # also need to know the size of the grid.
+    # another option would be to read the input into matrix
+    antenna, len_col, len_row = get_antenna(lines)
+    log(antenna)
     log(f"len_row: {len_row}, len_col: {len_col}")
 
     # process each pair of antenna of the same frequency
@@ -110,6 +113,7 @@ def solve_part1(lines):
     result = len(antinodes)
 
     return result
+
 
 def find_antinodes2(antenna1, antenna2, len_row, len_col):
     # calculate the two locations equal distant on the line formed by the two antenna
@@ -138,23 +142,10 @@ def find_antinodes2(antenna1, antenna2, len_row, len_col):
 
     return nodes
 
-def solve_part2(lines):
-    antenna: dict[int, list[tuple[int, int]]] = dict()
 
-    row = 0
-    col = 0
-    for line in lines:
-        col = 0
-        for c in line:
-            if c != ".":
-                coordinates = antenna.get(c, list())
-                coordinates.append((row, col))
-                antenna[c] = coordinates
-            col += 1
-        row += 1
+def solve_part2(lines):
+    antenna, len_col, len_row = get_antenna(lines)
     log(antenna)
-    len_row = row
-    len_col = col
     log(f"len_row: {len_row}, len_col: {len_col}")
 
     # process each pair of antenna of the same frequency

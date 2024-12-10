@@ -24,6 +24,7 @@ def main():
 
 
 def process_file(file_name):
+    print(f"Processing: {file_name}")
     with open(file_name) as file:
         lines = list(map(lambda x: x.strip(), file.readlines()))
         print("Part 1")

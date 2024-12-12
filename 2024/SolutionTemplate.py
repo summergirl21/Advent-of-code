@@ -24,10 +24,9 @@ def main():
 
 
 def process_file(file_name):
-    print(f"Processing: {file_name}")
     with open(file_name) as file:
         lines = list(map(lambda x: x.strip(), file.readlines()))
-        print("Part 1")
+        print(f"Part 1: {file_name}")
         start = time.time()
         result1 = solve_part1(lines)
         end = time.time()
@@ -35,7 +34,7 @@ def process_file(file_name):
         print(f"Elapsed time {end - start}")
 
         if SOLVE_PART_2:
-            print("\nPart 2")
+            print(f"\nPart 2: {file_name}")
             start = time.time()
             result2 = solve_part2(lines)
             end = time.time()
